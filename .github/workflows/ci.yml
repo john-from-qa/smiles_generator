@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up conda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          environment-file: environment.yml
+          activate-environment: smiles
+
+      - name: Show Python
+        run: python -V
+
+      - name: Run generator (smoke test)
+        run: python smiles_generator.py --count 1 --max_attempts 50

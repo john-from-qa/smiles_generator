@@ -1,0 +1,7 @@
+name: smiles
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy<2          # Pin to avoid runtime incompatibilities with some RDKit builds
+  - rdkit
